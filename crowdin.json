@@ -1,0 +1,23 @@
+{
+    "project": "connectedcars",
+    "projectId": "282393",
+    "apiToken": "d6715f1322ad410fd42b63f0f234eefe0145c64493c54b950d54570e45cf9d8562380cc4e05b40f8",
+    "workingDir": "locales",
+    "remotePath": "/connectedcars/locales/template.pot",
+    "supportedLanguages": [
+        "da",
+        "de",
+        "sv",
+        "es",
+        "fi",
+        "fr"
+    ],
+    "languageMap": {
+        "sv:": "sv-SE",
+        "es": "es-ES"
+    },
+    "pullRequest": {
+        "githubProject": "connectedcars/manage",
+        "baseBranch": "master"
+    }
+}
