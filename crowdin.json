@@ -13,7 +13,7 @@
         "fr"
     ],
     "languageMap": {
-        "sv:": "sv-SE",
+        "sv": "sv-SE",
         "es": "es-ES"
     },
     "pullRequest": {

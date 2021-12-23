@@ -57,7 +57,7 @@ async function updateFile(fileId: number, storageId: number) {
   try {
     await sourceFilesApi.updateOrRestoreFile(projectId, fileId, { storageId })
 
-    console.log('Translations uploaded')
+    console.log('Translations updated')
   } catch (error) {
     console.error(error)
   }
@@ -71,10 +71,9 @@ void (async () => {
     console.log(`Skipped Crowdin translation upload on branch ${branch}`)
     return
   }
-  console.log('Uploading translations to crowdin')
 
   const fileId = await findFileId()
-  console.log('found fileId', fileId)
+  console.log('Found fileId', fileId)
 
   console.log('Uploading', filePath)
   const storageId = await addStorage()
@@ -84,5 +83,6 @@ void (async () => {
     return
   }
 
+  console.log('Updating file...')
   await updateFile(fileId, storageId)
 })()
