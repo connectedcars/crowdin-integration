@@ -7,6 +7,8 @@ const execAsync = promisify(require('child_process').exec)
 import axios from 'axios'
 import fs from 'fs'
 
+import gitInfo from './git-info'
+
 // Load config
 nconf.file('./crowdin.json')
 nconf.defaults({
@@ -87,13 +89,10 @@ async function buildTranslations(projectId: number, callback?: (buildId: number)
 }
 
 async function extractTranslations(url: string | null, destination: string): Promise<void> {
-  // todo: move to settings
-  const supportedLangs = ['da', 'de', 'sv', 'es', 'fi', 'fr']
+  const supportedLangs = nconf.get('supportedLanguages')
   // Some languages have the full language code, which we do not use
-  const langMap = {
-    sv: 'sv-SE',
-    es: 'es-ES'
-  }
+  const langMap = nconf.get('languageMap')
+
   const destPath = `locales/${destination}.zip`
 
   if (!url) {
@@ -134,14 +133,15 @@ async function extract(source: string, langs: string[], langMap: Record<string, 
 }
 
 async function gitPullRequest() {
-  // const { branch } = await gitInfo()
-  // if (branch !== 'master') {
-  //   console.log(`Skipped Crowdin pull request creation on branch ${branch}. Please switch to master`)
-  //   return
-  // }
+  const baseBranch = nconf.get('pullRequest:baseBranch') || 'master'
+
+  const { branch } = await gitInfo()
+  if (branch !== baseBranch) {
+    console.log(`Skipped Crowdin pull request creation on branch ${branch}. Please switch to ${baseBranch}`)
+    return
+  }
 
   const ghProject = nconf.get('pullRequest:githubProject')
-  const baseBranch = nconf.get('pullRequest:baseBranch')
 
   const timestamp = Date.now()
   const branchName = `translate-${timestamp}`
@@ -179,6 +179,8 @@ void (async () => {
       const translationUrl = await downloadTranslations(projectId, buildId)
 
       await extractTranslations(translationUrl, 'all')
+
+      await gitPullRequest()
     })
   } catch (error) {
     console.error(error)
