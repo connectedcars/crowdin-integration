@@ -38,7 +38,7 @@
     "ci-jest": "TZ=UTC jest --silent --no-color --json 2> /dev/null; res=$?; echo; exit $res",
     "ci-audit": "npm audit --json || true",
     "ci-eslint": "eslint --format json './src/**/*.{ts,tsx}' || true",
-    "prepare": "echo \"Make npm install devDependencies for this package by having a prepare script\"",
+    "prepare": "npm run build",
     "prepack": "npm run build",
     "prepublishOnly": "rm -rf build"
   },
