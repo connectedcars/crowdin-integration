@@ -1,14 +1,29 @@
 {
-  "extends": "./node_modules/@connectedcars/setup/tsconfig",
-  // All paths need to reset or they would be pointing to ./node_modules/@connectedcars/setup
   "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "esnext",
+      "esnext.bigint"
+    ],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "module": "CommonJS",
+    "declaration": true,
+    "sourceMap": true,
     "outDir": "build/dist",
     "rootDir": "./",
-    "module": "CommonJS"
+    "incremental": true
   },
   "exclude": [
-    "build",
     "node_modules",
+    "build",
     "coverage"
   ]
 }
