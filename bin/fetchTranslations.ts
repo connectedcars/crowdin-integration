@@ -119,14 +119,15 @@ async function extractTranslations(url: string | null, destination: string): Pro
 async function extract(source: string, langs: string[], langMap: Record<string, string>): Promise<void> {
   const project = nconf.get('project')
   const workingDir = nconf.get('workingDir')
+  const extractPath = nconf.get('extractPath')
 
   const opts = { cwd: `./${workingDir}` }
   console.log('Unzipping...')
   await cmd(`unzip -u ${source}.zip -d tmp`, opts)
   console.log('Copying...')
   for (const l of langs) {
-    const langName = langMap[l] || l
-    await cmd(`cp tmp/${langName}/${project}/locales/template-${langName}.po ${l}.po`, opts)
+    const langName = langMap?.[l] || l
+    await cmd(`cp tmp/${extractPath}/${langName}.po ${l}.po`, opts)
   }
   console.log('Cleaning up...')
   await cmd(`rm -rf tmp/ ${source}.zip`, opts)
