@@ -10,7 +10,7 @@ import fs from 'fs'
 import gitInfo from './git-info'
 
 // Load config
-nconf.file('./crowdin.json')
+nconf.argv().file('./crowdin.json')
 nconf.defaults({
   workingDir: 'locales',
   pullRequest: {
@@ -135,10 +135,11 @@ async function extract(source: string, langs: string[], langMap: Record<string, 
 
 async function gitPullRequest() {
   const baseBranch = nconf.get('pullRequest:baseBranch') || 'master'
+  const forcePR = nconf.get('force')
 
   const { branch } = await gitInfo()
-  if (branch !== baseBranch) {
-    console.log(`Skipped Crowdin pull request creation on branch ${branch}. Please switch to ${baseBranch}`)
+  if (branch !== baseBranch && !forcePR) {
+    console.log(`Skipped Crowdin pull request creation on branch ${branch}. Please switch to ${baseBranch} or use --force`)
     return
   }
 
