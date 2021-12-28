@@ -42,7 +42,8 @@
     "ci-eslint": "eslint --format json './src/**/*.{ts,tsx}' || true",
     "prepare": "npm run build",
     "prepack": "npm run build",
-    "prepublishOnly": "rm -rf build"
+    "prepublishOnly": "rm -rf build",
+    "postinstall": "npm run build"
   },
   "engines": {
     "node": ">=10.15.0"
