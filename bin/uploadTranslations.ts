@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 import crowdin, { Credentials } from '@crowdin/crowdin-api-client'
 import fs from 'fs'
