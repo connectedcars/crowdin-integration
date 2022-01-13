@@ -21,6 +21,7 @@
     "rootDir": "./",
     "incremental": true
   },
+  "include": ["bin"],
   "exclude": [
     "node_modules",
     "build",
