@@ -21,7 +21,7 @@ const credentials: Credentials = {
   token: nconf.get('CROWDIN_API_TOKEN')
 }
 
-if (!credentials) {
+if (!credentials.token) {
   console.warn('Missing crowdin API key! (CROWDIN_API_TOKEN)')
   process.exit(1)
 }
