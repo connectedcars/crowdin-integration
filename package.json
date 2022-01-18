@@ -26,8 +26,8 @@
     "nconf": "^0.11.3"
   },
   "bin": {
-    "fetchTranslations": "build/dist/bin/fetchTranslations.js",
-    "uploadTranslations": "build/dist/bin/uploadTranslations.js"
+    "fetch-translations": "build/dist/bin/fetch-translations.js",
+    "upload-translations": "build/dist/bin/upload-translations.js"
   },
   "scripts": {
     "test": "TZ=UTC jest",
