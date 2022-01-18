@@ -10,7 +10,7 @@ import fs from 'fs'
 import gitInfo from './git-info'
 
 // Load config
-nconf.argv().file('./crowdin.json')
+nconf.argv().env().file('./crowdin.json')
 nconf.defaults({
   workingDir: 'locales',
   pullRequest: {
@@ -19,29 +19,10 @@ nconf.defaults({
 })
 
 const credentials: Credentials = {
-  token: nconf.get('apiToken')
+  token: nconf.get('CROWDIN_API_TOKEN')
 }
 
-const { projectsGroupsApi, translationsApi } = new crowdin(credentials)
-
-async function getProjects() {
-  try {
-    const projects = await projectsGroupsApi.listProjects()
-    console.log(projects.data)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-async function getProject(id: number) {
-  try {
-    const project = await projectsGroupsApi.getProject(id)
-    return project
-  } catch (error) {
-    console.error(error)
-  }
-  return null
-}
+const { translationsApi } = new crowdin(credentials)
 
 async function cmd(cmd: string, opts = { cwd: __dirname }) {
   const result = await execAsync(cmd, opts)
@@ -117,7 +98,6 @@ async function extractTranslations(url: string | null, destination: string): Pro
 }
 
 async function extract(source: string, langs: string[], langMap: Record<string, string>): Promise<void> {
-  const project = nconf.get('project')
   const workingDir = nconf.get('workingDir')
   const extractPath = nconf.get('extractPath')
 

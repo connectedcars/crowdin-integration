@@ -1,10 +1,9 @@
 {
-    "project": "connectedcars",
-    "projectId": "282393",
-    "apiToken": "token",
+    "project": "my-project",
+    "projectId": "306911",
     "workingDir": "locales",
-    "remotePath": "/connectedcars/locales/template.pot",
-    "extractPath": "locales",
+    "remotePath": "/develop/locales/template.pot",
+    "extractPath": "develop/locales",
     "supportedLanguages": [
         "da",
         "de",
@@ -14,7 +13,7 @@
         "fr"
     ],
     "pullRequest": {
-        "githubProject": "connectedcars/manage",
-        "baseBranch": "master"
+        "githubProject": "org/project-name",
+        "baseBranch": "develop"
     }
 }

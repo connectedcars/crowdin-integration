@@ -9,7 +9,7 @@ import gitInfo from './git-info'
 const BRANCH_NAME = process.env.BRANCH_NAME
 
 // Load config
-nconf.argv().file('./crowdin.json')
+nconf.argv().env().file('./crowdin.json')
 
 const baseBranch = nconf.get('pullRequest:baseBranch')
 const forceUpload = nconf.get('force')
@@ -18,7 +18,7 @@ const workingDir = nconf.get('workingDir')
 const filePath = workingDir ? `${workingDir}/template.pot` : 'template.pot'
 
 const credentials: Credentials = {
-  token: nconf.get('apiToken')
+  token: nconf.get('CROWDIN_API_TOKEN')
 }
 
 const { uploadStorageApi, sourceFilesApi } = new crowdin(credentials)
