@@ -29,13 +29,13 @@ async function cmd(cmd: string, opts = { cwd: __dirname }) {
   return result.stdout
 }
 
-async function downloadTranslations(projectId: number, buildID: number | null) {
-  if (!buildID) {
+async function downloadTranslations(projectId: number, buildId: number | null) {
+  if (!buildId) {
     console.error('Missing build id')
     return null
   }
   try {
-    const translations = await translationsApi.downloadTranslations(projectId, buildID)
+    const translations = await translationsApi.downloadTranslations(projectId, buildId)
     return translations.data.url
   } catch (error) {
     console.error(error)
@@ -73,8 +73,9 @@ async function extractTranslations(url: string | null, destination: string): Pro
   const supportedLangs = nconf.get('supportedLanguages')
   // Some languages have the full language code, which we do not use
   const langMap = nconf.get('languageMap')
+  const workingDir = nconf.get('workingDir')
 
-  const destPath = `locales/${destination}.zip`
+  const destPath = `${workingDir}/${destination}.zip`
 
   if (!url) {
     console.log('No url given')
