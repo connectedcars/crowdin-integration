@@ -21,6 +21,11 @@ const credentials: Credentials = {
   token: nconf.get('CROWDIN_API_TOKEN')
 }
 
+if (!credentials) {
+  console.warn('Missing crowdin API key! (CROWDIN_API_TOKEN)')
+  process.exit(1)
+}
+
 const { uploadStorageApi, sourceFilesApi } = new crowdin(credentials)
 
 async function addStorage() {
