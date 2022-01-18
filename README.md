@@ -3,7 +3,7 @@ Common setup for fetching and updating translations using the crowdin API.
 
 # Usage
 
-Config should go into `crowdin.json`. See the example file [here](https://github.com/connectedcars/crowdin-integration/blob/master/crowdin.json).
+Config should go into `crowdin.json`. See the example file [here](https://github.com/connectedcars/crowdin-integration/blob/master/crowdin.example.json).
 
 On the Crowdin, go to your project -> content -> settings on the `.pot` file. In `Resulting file after translations export`, the value should be `/locales/%two_letters_code%.po` to get a consistent path to use. Alternatively put a `languageMap` in the `crowdin.json` setting file, mapping the language codes to the desired output.
 
