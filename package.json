@@ -1,7 +1,17 @@
 {
-  "name": "crowdin-integration",
+  "name": "@connectedcars/crowdin-integration",
+  "author": "Connected Cars <oss@connectedcars.io>",
+  "description": "Tools for managing uploading and fetching translations to Crowdin",
+  "license": "MIT",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://github.com/connectedcars/crowdin-integration#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connectedcars/crowdin-integration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/connectedcars/crowdin-integration/issues"
+  },
   "devDependencies": {
     "@babel/cli": "7.16.8",
     "@babel/core": "7.16.12",
