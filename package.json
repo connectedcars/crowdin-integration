@@ -50,11 +50,12 @@
     "ci-jest": "TZ=UTC jest --silent --no-color --json 2> /dev/null; res=$?; echo; exit $res",
     "ci-audit": "npm audit --json || true",
     "ci-eslint": "eslint --format json './src/**/*.{ts,tsx}' || true",
-    "prepare": "npm run build",
-    "prepack": "npm run build",
-    "prepublishOnly": "rm -rf build",
-    "postinstall": "npm run build"
+    "prepare": "npm run build"
   },
+  "files": [
+    "bin",
+    "dist"
+  ],
   "engines": {
     "node": ">=10.15.0"
   }
