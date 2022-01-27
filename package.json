@@ -3,7 +3,7 @@
   "author": "Connected Cars <oss@connectedcars.io>",
   "description": "Tools for managing uploading and fetching translations to Crowdin",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/connectedcars/crowdin-integration#readme",
   "repository": {
     "type": "git",
