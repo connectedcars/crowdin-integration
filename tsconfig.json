@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2019",
     "lib": [
-      "esnext",      
-      "dom",
-      "esnext.bigint"
+      "es2019",      
     ],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
