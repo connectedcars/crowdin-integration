@@ -49,7 +49,11 @@ async function findFileId() {
 
     const file = files.data.find(({ data }) => data.path === remotePath)
 
-    return file?.data.id
+    if (!file?.data.id) {
+      throw new Error('File not found, check your "remotePath" setting.')
+    }
+
+    return file.data.id
   } catch (error) {
     console.error(error)
   }
