@@ -50,7 +50,8 @@
     "ci-jest": "TZ=UTC jest --silent --no-color --json 2> /dev/null; res=$?; echo; exit $res",
     "ci-audit": "npm audit --json || true",
     "ci-eslint": "eslint --format json './src/**/*.{ts,tsx}' || true",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "patch": "npm version patch -m 'Release v%s'"
   },
   "files": [
     "bin",
