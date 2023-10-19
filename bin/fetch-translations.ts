@@ -9,6 +9,8 @@ import fs from 'fs'
 
 import gitInfo from './git-info'
 
+const GITHUB_PR_MAX_LENGTH = 65536
+
 // Load config
 nconf.argv().env().file('./crowdin.json')
 nconf.defaults({
@@ -144,9 +146,10 @@ async function gitPullRequest() {
     console.log('No file changes detected. Aborting.')
     return
   }
-  const translationDiff = await cmd(`git diff --staged -U0 | grep -v '#' | grep '^[-+]' | sed 's/[+-]$//'`)
+  const translationDiff: string = await cmd(`git diff --staged -U0 | grep -v '#' | grep '^[-+]' | sed 's/[+-]$//'`)
   const diffEscaped = translationDiff.replace(/'/g, "'\\''")
-  await cmd(`git commit -m 'Updated translations from crowdin' -m '\`\`\`diff\n${diffEscaped}\n\`\`\`'`)
+  const diffTruncated = diffEscaped.length >  GITHUB_PR_MAX_LENGTH ? diffEscaped.substring(0, GITHUB_PR_MAX_LENGTH-20)+'\ntruncated...' : diffEscaped
+  await cmd(`git commit -m 'Updated translations from crowdin' -m '\`\`\`diff\n${diffTruncated}\n\`\`\`'`)
   await cmd(`git push -u origin ${branchName}`)
   await cmd(`git checkout ${baseBranch}`)
   console.log(`https://github.com/${ghProject}/compare/${branchName}`)
