@@ -30,5 +30,6 @@ Settings overview:
 | `remotePath` | The full remote path | `/develop/locales/template.pot` |
 | `extractPath` | The path inside the zip file crowdin provides. | `develop/locales` |
 | `supportedLanguages` | A list of the languages to extract. | `[ "da", "de", "sv", "es", "fi", "fr" ]` |
+| `languageMap` | Map languages to a different format. | `{ "da-DK": "da" }` |
 | `pullRequest` | Optional settings for creating an automatic pull request. | `{ "githubProject": "connectedcars/mobile-app", "baseBranch": "develop" }` |
 | `force` | Force pull request creation or source upload when outside basebranch. Prefereably use as argument: `--force` | `{ "githubProject": "connectedcars/mobile-app", "baseBranch": "develop" }` |

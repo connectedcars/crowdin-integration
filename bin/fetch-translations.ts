@@ -146,7 +146,7 @@ async function gitPullRequest() {
     console.log('No file changes detected. Aborting.')
     return
   }
-  const translationDiff = await cmd(`git diff --staged -U0 | grep -v '#' | grep '^[-+]' | sed 's/[+-]$//'`)
+  const translationDiff: string = await cmd(`git diff --staged -U0 | grep -v '#' | grep '^[-+]' | sed 's/[+-]$//'`)
   const diffEscaped = translationDiff.replace(/'/g, "'\\''")
   const diffTruncated = diffEscaped.length >  GITHUB_PR_MAX_LENGTH ? diffEscaped.substring(0, GITHUB_PR_MAX_LENGTH)+'\ntruncated...' : diffEscaped
   await cmd(`git commit -m 'Updated translations from crowdin' -m '\`\`\`diff\n${diffTruncated}\n\`\`\`'`)
